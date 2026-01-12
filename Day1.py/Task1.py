@@ -1,0 +1,6 @@
+name=input("Enter Your Name:")
+age=input("Enter Your Age:")
+email=input("Enter Your Email:")
+print("NAME:",name)
+print("AGE:",age)
+print("EMAIL:",email)
