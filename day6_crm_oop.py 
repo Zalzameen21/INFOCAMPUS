@@ -1,48 +1,132 @@
-STEP 1 :-
-
+# Step 1 – Customer Class
 class Customer:
-    def __init__(self, cid, name, email, status):
-        self.cid = cid
+    def __init__(self, id, name, email, status):
+        self.id = id
         self.name = name
         self.email = email
         self.status = status
 
+    # Display customer details
+    def display(self):
+        print(f"ID: {self.id}, Name: {self.name}, Email: {self.email}, Status: {self.status}")
 
-STEP 2 :-
+    # Update customer status
+    def update_status(self, new_status):
+        if self.status == "Lead" and new_status == "Customer":
+            self.status = new_status
+            print("Status updated")
+        elif self.status == "Customer" and new_status == "Client":
+            self.status = new_status
+            print("Status updated")
+        elif self.status == "Client":
+            print("Client status cannot be downgraded")
+        else:
+            print("Invalid status update")
 
-def display(self):
-    print("ID:", self.cid)
-    print("Name:", self.name)
-    print("Email:", self.email)
-    print("Status:", self.status)
-
-2.2 :-
-def update_status(self, new_status):
-    if self.status == "Lead" and new_status == "Customer":
-        self.status = new_status
-        print("Status updated")
-
-    elif self.status == "Customer" and new_status == "Client":
-        self.status = new_status
-        print("Status updated")
-
-    elif self.status == "Client":
-        print("Client status cannot be downgraded")
-
-    else:
-        print("Invalid status update")
-
-2.3 :-
-def is_deletable(self):
-    if self.status == "Lead":
-        return True
-    else:
-        return False
+    # Check if deletable
+    def is_deletable(self):
+        return self.status == "Lead"
 
 
-STEP 3 :-
-
+# Step 3 – CRM System Class
 class CRMSystem:
     def __init__(self):
-        self.customer = []
-        
+        self.customers = []
+
+    # 
+    def add_customer(self):
+        id = int(input("Enter Customer ID: "))
+        name = input("Enter Name: ")
+        email = input("Enter Email: ")
+        status = input("Enter Status (Lead/Customer/Client): ")
+        customer = Customer(id, name, email, status)
+        self.customers.append(customer)
+        print("Customer added successfully!\n")
+
+    # 
+    def display_all(self):
+        if not self.customers:
+            print("No customers found.\n")
+            return
+        print("\n--- All Customers ---")
+        for c in self.customers:
+            c.display()
+        print("-------------------\n")
+
+    #
+    def search_customer(self):
+        key = input("Enter Customer ID or Email to search: ")
+        for c in self.customers:
+            if str(c.id) == key or c.email == key:
+                print("Customer found:")
+                c.display()
+                return c
+        print("Customer not found.\n")
+        return None
+
+    # 
+    def update_customer_status(self):
+        c = self.search_customer()
+        if c:
+            print("Current Status:", c.status)
+            if c.status == "Lead":
+                new_status = "Customer"
+            elif c.status == "Customer":
+                new_status = "Client"
+            else:
+                new_status = c.status  # Client cannot downgrade
+            c.update_status(new_status)
+
+    # 
+    def delete_customer(self):
+        c = self.search_customer()
+        if c:
+            if c.is_deletable():
+                self.customers.remove(c)
+                print("Customer deleted successfully.\n")
+            else:
+                print("Cannot delete customer with status:", c.status)
+
+    #
+    def count_by_status(self):
+        lead = sum(1 for c in self.customers if c.status == "Lead")
+        customer = sum(1 for c in self.customers if c.status == "Customer")
+        client = sum(1 for c in self.customers if c.status == "Client")
+        print(f"Leads: {lead}, Customers: {customer}, Clients: {client}\n")
+
+
+# Step 4 – Menu Driven System
+def run_crm():
+    crm = CRMSystem()
+    while True:
+        print("\n--- CRM Menu ---")
+        print("1. Add Customer")
+        print("2. Display All Customers")
+        print("3. Search Customer")
+        print("4. Update Customer Status")
+        print("5. Delete Customer")
+        print("6. Count by Status")
+        print("7. Exit")
+        choice = input("Enter choice: ")
+
+        if choice == "1":
+            crm.add_customer()
+        elif choice == "2":
+            crm.display_all()
+        elif choice == "3":
+            crm.search_customer()
+        elif choice == "4":
+            crm.update_customer_status()
+        elif choice == "5":
+            crm.delete_customer()
+        elif choice == "6":
+            crm.count_by_status()
+        elif choice == "7":
+            print("OUT...")
+            break
+        else:
+            print("Wrong..... Try again.")
+
+
+# Run the CRM system
+run_crm()
