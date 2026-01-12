@@ -1,4 +1,5 @@
 STEP 1 :-
+
 class Customer:
     def __init__(self, cid, name, email, status):
         self.cid = cid
@@ -8,6 +9,7 @@ class Customer:
 
 
 STEP 2 :-
+
 def display(self):
     print("ID:", self.cid)
     print("Name:", self.name)
@@ -39,6 +41,7 @@ def is_deletable(self):
 
 
 STEP 3 :-
+
 class CRMSystem:
     def __init__(self):
         self.customer = []
