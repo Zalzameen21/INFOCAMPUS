@@ -1,0 +1,45 @@
+STEP 1 :-
+class Customer:
+    def __init__(self, cid, name, email, status):
+        self.cid = cid
+        self.name = name
+        self.email = email
+        self.status = status
+
+
+STEP 2 :-
+def display(self):
+    print("ID:", self.cid)
+    print("Name:", self.name)
+    print("Email:", self.email)
+    print("Status:", self.status)
+
+2.2 :-
+def update_status(self, new_status):
+    if self.status == "Lead" and new_status == "Customer":
+        self.status = new_status
+        print("Status updated")
+
+    elif self.status == "Customer" and new_status == "Client":
+        self.status = new_status
+        print("Status updated")
+
+    elif self.status == "Client":
+        print("Client status cannot be downgraded")
+
+    else:
+        print("Invalid status update")
+
+2.3 :-
+def is_deletable(self):
+    if self.status == "Lead":
+        return True
+    else:
+        return False
+
+
+STEP 3 :-
+class CRMSystem:
+    def __init__(self):
+        self.customer = []
+        
