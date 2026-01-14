@@ -1,10 +1,8 @@
-import re
-
 def validate_email(email):
-    return re.match(r'^\S+@\S+\.\S+$', email) is not None
+    return "@" in email and "." in email
 
 def validate_phone(phone):
-    return re.match(r'^\d{10}$', phone) is not None
+    return phone.isdigit() and len(phone) == 10
 
 def validate_name(name):
     return name.isalpha()
