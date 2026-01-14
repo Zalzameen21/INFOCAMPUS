@@ -8,6 +8,3 @@ def validate_phone(phone):
 
 def validate_name(name):
     return name.isalpha()
-
-def sanitize_input(text):
-    return text.strip()
