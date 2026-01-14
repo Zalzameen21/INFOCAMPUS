@@ -41,6 +41,18 @@
 
         <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
+        <h2>Customer List</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
+        <tbody id="tableBody"></tbody>
+    </table>
+    
 </div>
 
 <!-- Bootstrap JS Bundle -->
@@ -49,10 +61,25 @@
 <script>
 document.getElementById("customerForm").onsubmit = function(e) {
     e.preventDefault();
-    alert("Customer submitted successfully!");
-    this.reset();
-};
+            let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let phone = document.getElementById("phone").value;
+        let status = document.getElementById("status").value.toLowerCase();
+
+        let row = `
+            <tr>
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${phone}</td>
+                <td class="${status}">${status}</td>
+            </tr>
+        `;
+
+        document.getElementById("tableBody").innerHTML += row;
+        this.reset();
+    };
 </script>
 
 </body>
 </html>
+
