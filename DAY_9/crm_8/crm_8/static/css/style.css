@@ -1,0 +1,45 @@
+/* Background Image */
+body {
+    background-image: url("../image/crm.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Green Card */
+.green-card {
+    background-color: #28a745 !important;
+    color: white;
+    border-radius: 10px;
+}
+
+.green-card .card-title,
+.green-card .card-text {
+    color: white;
+}
+
+/* Table Styling */
+.table {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    color: red !important;
+}
+
+.table th {
+    background-color: #0080ff !important;
+    color: white !important;
+}
+
+.table td {
+    background-color: transparent !important;
+}
+
+/* Striped rows */
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Hover effect */
+.table tbody tr:hover {
+    background-color: red !important;
+    color: black !important;
+}
